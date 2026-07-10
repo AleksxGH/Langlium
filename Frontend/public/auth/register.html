@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Langlium - Registration</title>
+
+    <link rel="stylesheet" href="./styles/variables.css">
+    <link rel="stylesheet" href="./styles/auth.css">
+</head>
+<body>
+    <main class="auth-page">
+    <div class="card-wrap">
+      <div class="logo-wrap">
+        <!-- <img src="" alt="Langlium" class="logo"> -->
+      </div>
+      <section class="auth-card">
+        <h1 class="title">Регистрация</h1>
+
+        <form class="form" id="registerForm" novalidate>
+          <label class="label">
+            <span class="vis">Электронная почта</span>
+            <input class="input" type="email" placeholder="Электронная почта">
+          </label>
+
+          <label class="label">
+            <span class="vis">Пароль</span>
+            <input class="input" type="password" placeholder="Пароль">
+          </label>
+
+          <label class="label">
+            <span class="vis">Повторите пароль</span>
+            <input class="input" type="password" placeholder="Повторите пароль">
+          </label>
+
+          <div class="error" role="status" aria-live="polite" style="display:none">Пароли не совпадают
+          </div>
+
+          <button class="primary" type="submit" disabled>Далее</button>
+        </form>
+      </section>
+
+      <a class="muted-link" href="../auth/login.html">Уже есть аккаунт?</a>
+
+    </div>
+  </main>
+</body>

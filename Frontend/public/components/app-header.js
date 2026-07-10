@@ -24,9 +24,9 @@ class AppHeader extends HTMLElement {
         const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 
         const navItems = [
-            { href: './index.html', label: 'Главная' },
-            { href: './materials.html', label: 'Мои материалы' },
-            { href: './tests.html', label: 'Тренажёры' },
+            { href: './index.html', label: 'Home' },
+            { href: './materials.html', label: 'My Materials' },
+            { href: './exercises.html', label: 'Exercises' },
         ];
 
         const navHtml = navItems.map(item => {
@@ -49,9 +49,8 @@ class AppHeader extends HTMLElement {
                     <a href="./index.html" class="topbar-logo-link">
                         <div class="topbar-logo">
                             <div class="topbar-logo-icon">
-                                <img src="https://static.vecteezy.com/system/resources/previews/045/681/995/non_2x/language-icon-symbol-design-illustration-vector.jpg" alt="Langlium">
+                                <img src="static/logo.svg" alt="Langlium">
                             </div>
-                            <div class="topbar-logo-text">Langlium</div>
                         </div>
                     </a>
                 </div>
