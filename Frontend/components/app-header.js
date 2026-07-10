@@ -1,9 +1,12 @@
+import { LANGUAGES, flagUrl } from '../scripts/languages.js';
+
 class AppHeader extends HTMLElement {
     static stylesLoaded = false;
 
     connectedCallback() {
         this.loadStyles();
         this.render();
+        this.attachEvents();
     }
 
     loadStyles() {
@@ -11,29 +14,111 @@ class AppHeader extends HTMLElement {
 
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = '/css/components/app-header.css';
+        link.href = './styles/app-header.css';
         document.head.appendChild(link);
 
         AppHeader.stylesLoaded = true;
     }
 
     render() {
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+        const navItems = [
+            { href: './index.html', label: 'Главная' },
+            { href: './materials.html', label: 'Мои материалы' },
+            { href: './tests.html', label: 'Тренажёры' },
+        ];
+
+        const navHtml = navItems.map(item => {
+            const isActive = item.href.replace('./', '') === currentPath;
+            return `<a href="${item.href}" class="${isActive ? 'active' : ''}">${item.label}</a>`;
+        }).join('');
+
+        const currentLang = LANGUAGES[0];
+
+        const languageOptionsHtml = LANGUAGES.map((lang, i) => `
+            <div class="language-option ${i === 0 ? 'active' : ''}" data-lang="${lang.code}">
+                <img class="language-flag-img" src="${flagUrl(lang.countryCode)}" alt="${lang.name}">
+                <span>${lang.name}</span>
+            </div>
+        `).join('');
+
         this.innerHTML = `
             <header class="topbar">
                 <div class="topbar-left">
-                    <a href="/index.html" class="topbar-logo-link">
+                    <a href="./index.html" class="topbar-logo-link">
                         <div class="topbar-logo">
-                            <img src="https://static.vecteezy.com/system/resources/previews/045/681/995/non_2x/language-icon-symbol-design-illustration-vector.jpg" alt="СловоЛаб">
+                            <div class="topbar-logo-icon">
+                                <img src="https://static.vecteezy.com/system/resources/previews/045/681/995/non_2x/language-icon-symbol-design-illustration-vector.jpg" alt="Langlium">
+                            </div>
+                            <div class="topbar-logo-text">Langlium</div>
                         </div>
-                        <div class="topbar-logo-text">LanguagePlatform</div>
                     </a>
                 </div>
+
                 <div class="topbar-center">
-                    <nav class="topbar-menu"></nav>
+                    <nav class="topbar-menu">${navHtml}</nav>
                 </div>
-                <div class="topbar-right"></div>
+
+                <div class="topbar-right">
+                    <div class="language-switcher">
+                        <button class="language-switcher-trigger" id="langTrigger">
+                            <img class="language-flag-img" id="currentFlag" src="${flagUrl(currentLang.countryCode)}" alt="${currentLang.name}">
+                            <span class="language-code" id="currentLangCode">${currentLang.code.toUpperCase()}</span>
+                            <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none">
+                                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+
+                        <div class="language-dropdown" id="langDropdown">
+                            ${languageOptionsHtml}
+                            <div class="language-dropdown-divider"></div>
+                            <div class="language-option language-option-add">
+                                <span>+ Добавить язык</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="user-avatar" title="Профиль">АН</div>
+                </div>
             </header>
         `;
+    }
+
+    attachEvents() {
+        const trigger = this.querySelector('#langTrigger');
+        const dropdown = this.querySelector('#langDropdown');
+        const currentFlag = this.querySelector('#currentFlag');
+        const currentLangCode = this.querySelector('#currentLangCode');
+
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = dropdown.classList.toggle('open');
+            trigger.setAttribute('aria-expanded', isOpen);
+        });
+
+        this.querySelectorAll('.language-option[data-lang]').forEach(option => {
+            option.addEventListener('click', () => {
+                this.querySelector('.language-option.active')?.classList.remove('active');
+                option.classList.add('active');
+
+                const flagSrc = option.querySelector('.language-flag-img').src;
+                const langCode = option.dataset.lang;
+
+                currentFlag.src = flagSrc;
+                currentLangCode.textContent = langCode.toUpperCase();
+
+                dropdown.classList.remove('open');
+
+                // здесь позже: сохранить выбранный язык и перезагрузить контент страницы
+                // localStorage.setItem('currentLanguage', langCode);
+            });
+        });
+
+        document.addEventListener('click', () => {
+            dropdown.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+        });
     }
 }
 
