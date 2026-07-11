@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Langlium - Sign In</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/variables.css">
+    <link rel="stylesheet" href="../styles/auth.css">
+</head>
+<body>
+    <main class="auth-page">
+      <div class="logo-wrap">
+        <img src="../static/logo.svg" alt="Langlium" class="logo">
+      </div>
+      <section class="auth-card">
+        <h2 class="title">Sign In</h2>
+
+        <form class="form" id="registerForm" novalidate>
+          <label class="label">
+            <input class="input" type="email" placeholder="Email">
+          </label>
+
+          <label class="label">
+            <input class="input" type="password" placeholder="Password">
+          </label>
+
+          <div class="error" role="status" aria-live="polite">Passwords do not match</div>
+
+          <button class="primary" type="submit" disabled>Next</button>
+        </form>
+      </section>
+
+      <a class="muted-link" href="../auth/register.html">Don't have an account? Sign up</a>
+  </main>
+</body>

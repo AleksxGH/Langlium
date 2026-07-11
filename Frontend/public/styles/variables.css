@@ -4,5 +4,7 @@
     --color-text: #1F2937;
     --color-text-secondary: #6B7280;
     --color-border: #E5E7EB;
-    --color-surface: #FFFFFF;
+    --color-white: #FFFFFF;
+    --color-gray: #849795;
+    --color-error: #E64A3A;
 }

@@ -3,45 +3,41 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Langlium - Registration</title>
+    <title>Langlium - Sign Up</title>
 
-    <link rel="stylesheet" href="./styles/variables.css">
-    <link rel="stylesheet" href="./styles/auth.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/variables.css">
+    <link rel="stylesheet" href="../styles/auth.css">
 </head>
 <body>
     <main class="auth-page">
-    <div class="card-wrap">
       <div class="logo-wrap">
-        <!-- <img src="" alt="Langlium" class="logo"> -->
+        <img src="../static/logo.svg" alt="Langlium" class="logo">
       </div>
       <section class="auth-card">
-        <h1 class="title">Регистрация</h1>
+        <h2 class="title">Sign Up</h2>
 
         <form class="form" id="registerForm" novalidate>
           <label class="label">
-            <span class="vis">Электронная почта</span>
-            <input class="input" type="email" placeholder="Электронная почта">
+            <input class="input" type="email" placeholder="Email">
           </label>
 
           <label class="label">
-            <span class="vis">Пароль</span>
-            <input class="input" type="password" placeholder="Пароль">
+            <input class="input" type="password" placeholder="Password">
           </label>
 
           <label class="label">
-            <span class="vis">Повторите пароль</span>
-            <input class="input" type="password" placeholder="Повторите пароль">
+            <input class="input" type="password" placeholder="Confirm Password">
           </label>
 
-          <div class="error" role="status" aria-live="polite" style="display:none">Пароли не совпадают
-          </div>
+          <div class="error" role="status" aria-live="polite">Passwords do not match</div>
 
-          <button class="primary" type="submit" disabled>Далее</button>
+          <button class="primary" type="submit" disabled>Next</button>
         </form>
       </section>
 
-      <a class="muted-link" href="../auth/login.html">Уже есть аккаунт?</a>
-
-    </div>
+      <a class="muted-link" href="../auth/login.html">Already have an account?</a>
   </main>
 </body>
