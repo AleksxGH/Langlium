@@ -1,0 +1,18 @@
+const TOKEN_KEY = 'authToken';
+
+export function isAuthenticated() {
+    return !!localStorage.getItem(TOKEN_KEY);
+}
+
+export function getAuthToken() {
+    return localStorage.getItem(TOKEN_KEY);
+}
+
+export function setAuthToken(token) {
+    localStorage.setItem(TOKEN_KEY, token);
+}
+
+export function logout() {
+    localStorage.removeItem(TOKEN_KEY);
+    window.location.href = '/auth/login.html';
+}
